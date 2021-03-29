@@ -6,13 +6,13 @@ class Urls extends CI_Controller {
     parent::__construct();
 
     $this->load->helper('string');
-    $this->load->library('form_validation');
+    $this->load->library(array('form_validation', 'session'));
   }
 
   public function Index(){
     $this->form_validation->set_rules('address', 'URL', 'required|min_length[5]|max_length[1000]|trim');
 
-    if($this->form_validation_run() == FALSE){
+    if($this->form_validation->run() == FALSE){
       $data['error'] = validation_errors();
       $data['short_url'] = false;
     } else {
@@ -22,7 +22,7 @@ class Urls extends CI_Controller {
       if($this->session->userdata('logged'))
         $data['user_id'] = $this->session->userdata('id');
 
-      $res = $this->url->Save($res);
+      $res = $this->url->Save($data);
 
       if($res){
         $data['error'] = null;
@@ -35,7 +35,9 @@ class Urls extends CI_Controller {
     $this->load->view('home', $data);
   }
 
-  public function Go {
+  public function Go() {
+    var_dump($this->uri->segment(1));
+
     if(!$this->uri->segment(1)) {
       redirect(base_url());
     } else {

@@ -21,7 +21,7 @@ class User_model extends CI_Model {
 
   public function GetUser($id){
     $this->db->select('*')->from('users')->where('id', $id);
-    $result = $this->db-get()->result();
+    $result = $this->db->get()->result();
 
     if($result){
       return $result[0];
@@ -38,7 +38,7 @@ class User_model extends CI_Model {
 
   function Login($data){
     $this->db->select('*')->from('users')->where('email', $data['email']);
-    $result = $this->db-get()->result();
+    $result = $this->db->get()->result();
 
     return $result;
   }

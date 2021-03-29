@@ -9,7 +9,7 @@ $route['logout'] = 'User/Logout';
 $route['user'] = 'User/Index';
 $route['user/register'] = 'User/Register';
 $route['my-urls'] = 'User/Urls';
-$route['change-pass'] = 'User/UpdatePassword';
+$route['update-pass'] = 'User/UpdatePassword';
 $route['(:any)'] = 'Urls/Go';
 
 $route['404_override'] = '';
